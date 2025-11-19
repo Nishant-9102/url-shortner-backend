@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS links;
+
+
 CREATE TABLE IF NOT EXISTS links (
   id SERIAL PRIMARY KEY,
   short_code VARCHAR(8) UNIQUE NOT NULL,
@@ -5,5 +8,6 @@ CREATE TABLE IF NOT EXISTS links (
   click_count INTEGER DEFAULT 0,
   last_clicked TIMESTAMP
 );
+
 
 
