@@ -65,13 +65,13 @@ app.post('/shorten', async (req, res) => {
 app.get('/api/links', async (req, res) => {
   try {
     const result = await pool.query(`
-  SELECT 
+  SELECT
     id,
     original_url,
     short_code,
-    created_at AT TIME ZONE 'Asia/Kolkata' AS created_at,
+    to_char(created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS created_at,
     click_count,
-    last_clicked AT TIME ZONE 'Asia/Kolkata' AS last_clicked
+    to_char(last_clicked AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS last_clicked
   FROM links
   ORDER BY id DESC
 `);
